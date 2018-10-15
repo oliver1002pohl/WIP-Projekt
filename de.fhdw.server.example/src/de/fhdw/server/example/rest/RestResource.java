@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
+
 import com.sun.jersey.spi.resource.Singleton;
 
 import de.fhdw.derby.example.Database;
@@ -21,6 +23,9 @@ import de.fhdw.derby.example.Database;
 @Path("/")
 @Singleton
 public class RestResource {
+
+	Logger logger = Logger.getLogger(getClass());
+
 	@GET
 	@Path("/hello")
 	@Produces({ MediaType.TEXT_PLAIN })
@@ -71,6 +76,20 @@ public class RestResource {
 	}
 
 
+
+	@GET
+	@Path ("/plus/{a}/{b}")
+	@Produces ({ MediaType.APPLICATION_JSON })
+
+	public Response plus(@PathParam ("a") double a , @PathParam ("b") double b ) {
+
+		RestData D = new RestData();
+		double c = a + b;
+		D.setA(c);
+		System.out.println(c);
+		logger.info(String.format("%s + %s = %s ", a,b,c));
+			return Response.ok(D).build();
+	}
 
 
 
