@@ -37,7 +37,9 @@ public class Main extends Application {
 
 
 
-
+	/**
+	* Immer an die Dokumentation denken!
+	*/
 	public static void main(String[] args) {
 		launch(args);
 
