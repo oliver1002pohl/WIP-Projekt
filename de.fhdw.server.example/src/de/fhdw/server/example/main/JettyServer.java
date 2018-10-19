@@ -16,8 +16,9 @@ import com.sun.jersey.spi.container.servlet.ServletContainer;
 public class JettyServer {
 
 	public static void main(String[] args) throws Exception {
-		Server server = new Server(9998);
 
+		// Kommentar
+		Server server = new Server(9998);
 
 		// JERSEY
 		ResourceConfig resourceConfig = new PackagesResourceConfig("de.fhdw.server.example.rest");
@@ -25,20 +26,16 @@ public class JettyServer {
 		sh.setContextPath("/rest");
 		sh.addServlet(new ServletHolder(new ServletContainer(resourceConfig)), "/*");
 
-        server.setHandler(sh);
+		server.setHandler(sh);
 		server.start();
-
 
 		Logger logger = Logger.getRootLogger();
 		SimpleLayout layout = new SimpleLayout();
 		ConsoleAppender appender = new ConsoleAppender(layout);
-		FileAppender fileappender = new FileAppender(layout,"logs\\example.log");
+		FileAppender fileappender = new FileAppender(layout, "logs\\example.log");
 		logger.addAppender(appender);
 		logger.addAppender(fileappender);
 		logger.setLevel(Level.ALL);
-
-
-
 
 	}
 }
